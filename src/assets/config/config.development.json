@@ -1,0 +1,8 @@
+{
+    "production": "false",
+    "apiUrl": "http://localhost:8181",
+    "keycloakUrl": "https://localhost:8443",
+    "localhost": "http://localhost:4200",
+    "currentUser": {},
+    "accessToken": ""
+}

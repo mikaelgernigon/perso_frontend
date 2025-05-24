@@ -1,0 +1,20 @@
+<!-- \\ Begin About Section \\ -->
+<div class="About_sec" id="about">
+    <div class="Center">            	
+        <h1><span>&Agrave; P</span>ropos ...</h1>            		
+        <p>Je me nomme Mika&euml;l Gernigon. Je suis d&eacute;veloppeur fullstack. J'ai fait ce site pour exposer mon app&eacute;tance pour les nouvelles technologies, l'&eacute;criture et la musique. Vous trouverez dans cet espace mes diverses ressources. Je vous souhaite une bonne navigation.</p>
+        <div class="Line"></div>	
+        <!-- \\ Begin Tab side \\ -->
+        <div class="Tabside">
+            <ul>
+                <li><a [routerLink]="[{ outlets: { about: ['mission'] } }]" class="tabLink" id="cont-1" (click)="activeClass('cont-1')">Mission</a></li>
+                <li><a [routerLink]="[{ outlets: { about: ['vision'] } }]" class="tabLink" id="cont-2" (click)="activeClass('cont-2')">vision</a></li>
+                <li><a [routerLink]="[{ outlets: { about: ['sponsors'] } }]" class="tabLink" id="cont-3" (click)="activeClass('cont-3')">Sponsors</a></li>
+            </ul>
+            <div class="clear"></div>
+            <router-outlet name="about"></router-outlet>
+        </div>                    
+        <!-- // End Tab Side // -->
+    </div>
+</div>
+<!-- // End About Section // -->

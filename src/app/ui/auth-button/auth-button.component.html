@@ -1,0 +1,5 @@
+    @if (!authenticated) {
+        <a href="#" (click)="login()" title="Se Connecter"><i class="fa fa-regular fa-user"></i></a>
+    } @else {
+        <a href="#" (click)="logout()" title="Se Déconnecter"><i class="fa fa-solid fa-user"></i></a>
+    }
