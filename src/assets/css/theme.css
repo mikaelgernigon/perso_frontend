@@ -46,7 +46,7 @@ body { background: #fff; }
 
 /* <<< Header >>> */
 header { width: 100%; position: fixed; top: 0px; left: 0px; height: 105px; background: rgba(0, 0, 0, 0.5); z-index: 9; }
-header .Center { max-width: 1100px; margin: auto; }
+header .Center { max-width: 1500px; margin: auto; }
 header .site-logo { padding: 30px 0px 0px 0px; width: 220px; float: left; transition: all 0.3s;  }
 header .site-logo h1 { margin: 0px; }
 header .site-logo h1 a { font-size: 36px; color: #fff; font-family: 'Open Sans', sans-serif; font-weight: 800; text-decoration: none; text-transform: uppercase; text-shadow: rgb(3, 3, 3) 0px 2px 5px; transition: all 0.7s ease;  }
@@ -81,8 +81,59 @@ header.smaller .site-logo h1 a { font-size: 30px;  }
 	opacity: 1;
 }
 
-header.smaller .Navigation li a { padding: 16px 41px; }
-header.smaller .Navigation li { height: 60px; }
+.Navigation li app-auth-button a { padding: 42px 41px 36px 41px; font-size: 16px; color: #fff; font-family: 'Open Sans', sans-serif; font-weight: 400; text-decoration: none; display: block; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; }
+.Navigation li app-auth-button span { 
+	border-bottom: solid 5px #ff9000;
+	background: rgba(56,87,122,1);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(56,87,122,1)), color-stop(0%, rgba(56,87,122,1)), color-stop(0%, rgba(56,87,122,1)), color-stop(100%, rgba(44,68,94,1)));
+	background: linear-gradient(to bottom, rgba(56,87,122,1) 0%, rgba(56,87,122,1) 0%, rgba(56,87,122,1) 0%, rgba(44,68,94,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38577a', endColorstr='#2c445e', GradientType=0 );
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -10;
+	opacity: 0;
+	transition: all 0.5s ease;
+}
+.Navigation li:hover app-auth-button span, .Navigation li.active app-auth-button  span {
+	opacity: 1;
+}
+
+.Navigation li app-auth-button button { padding: 42px 41px 36px 41px; font-size: 16px; background-color: transparent !important; color: #fff; font-family: 'Open Sans', sans-serif; font-weight: 400; text-decoration: none; display: block; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; }
+.Navigation li app-auth-button button:hover{
+	border-bottom: solid 5px #ff9000;
+	background: rgba(56,87,122,1);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(56,87,122,1)), color-stop(0%, rgba(56,87,122,1)), color-stop(0%, rgba(56,87,122,1)), color-stop(100%, rgba(44,68,94,1)));
+	background: linear-gradient(to bottom, rgba(56,87,122,1) 0%, rgba(56,87,122,1) 0%, rgba(56,87,122,1) 0%, rgba(44,68,94,1) 100%);
+	width: 100%;
+	height: 100%;
+	transition: all 0.5s ease;
+}
+.Navigation li app-auth-button span { 
+	border-bottom: solid 5px #ff9000;
+	background: rgba(56,87,122,1);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(56,87,122,1)), color-stop(0%, rgba(56,87,122,1)), color-stop(0%, rgba(56,87,122,1)), color-stop(100%, rgba(44,68,94,1)));
+	background: linear-gradient(to bottom, rgba(56,87,122,1) 0%, rgba(56,87,122,1) 0%, rgba(56,87,122,1) 0%, rgba(44,68,94,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38577a', endColorstr='#2c445e', GradientType=0 );
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -10;
+	opacity: 0;
+	transition: all 0.5s ease;
+}
+.Navigation li:hover app-auth-button span, .Navigation li.active app-auth-button  span {
+	opacity: 1;
+}
+
+header.smaller .Navigation li app-auth-button a { padding: 16px 41px; }
+header.smaller .Navigation li app-auth-button  { height: 60px; }
 
 .mobile { display: none;  }
 .mobile .fa { padding: 12px 14px; font-size: 31px; width: 55px; height: 55px; color: #fff; cursor: pointer; background: #ff9408; }
@@ -276,6 +327,9 @@ footer .Cntr a:hover { color: #fff; }
 .Forum_sec .Leftside .Icon li a .fa { padding: 13px; margin-right: 10px; color: #ff9000 !important; border-radius: 50px; border: solid 2px #ff9000 !important; transition: all 0.3s ease; }
 .Forum_sec .Leftside .Icon li:hover a .fa { background:#ff9000; color:  #fff !important; border: solid 2px #fff !important; }
 .Forum_sec .Leftside .Icon li:hover .text { background:#ff9000; color:  #fff !important; }
+
+/* <<< Profil >>> */
+.Profil_sec  { width: 100%; height: 687px; position: relative; background-size: cover; }
 
 /* ==========================================================================
    Author's custom styles

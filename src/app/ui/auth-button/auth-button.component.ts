@@ -7,11 +7,14 @@ import {
   typeEventArgs,
   ReadyArgs
 } from 'keycloak-angular';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-auth-button',
-  imports: [RouterModule],
+  imports: [RouterModule, MatMenuModule, MatButtonModule, MatIconModule],
   templateUrl: './auth-button.component.html',
   styleUrl: './auth-button.component.css'
 })
@@ -21,7 +24,7 @@ export class AuthButtonComponent {
   private readonly keycloak = inject(Keycloak);
   private readonly keycloakSignal = inject(KEYCLOAK_EVENT_SIGNAL);
 
-  constructor() {
+  constructor(private router: Router) {
     effect(() => {
       const keycloakEvent = this.keycloakSignal();
 
@@ -43,5 +46,9 @@ export class AuthButtonComponent {
 
   logout() {
     this.keycloak.logout();
+  }
+
+  redirectToProfil(){
+    this.router.navigate(['/profil']);
   }
 }

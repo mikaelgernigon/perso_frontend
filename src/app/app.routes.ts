@@ -9,6 +9,7 @@ import { MissionComponent } from './about/mission/mission.component';
 import { SponsorsComponent } from './about/sponsors/sponsors.component';
 import { VisionComponent } from './about/vision/vision.component';
 import { CallbackComponent } from './callback/callback.component';
+import { ProfilComponent } from './profil/profil.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -22,5 +23,6 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'forum', component: ForumComponent },
     { path: 'callback', component: CallbackComponent },
+    { path: 'profil', component: ProfilComponent },
     { path: '', component: HomeComponent },
 ];

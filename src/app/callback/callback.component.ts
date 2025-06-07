@@ -42,8 +42,10 @@ export class CallbackComponent implements OnInit {
 
   async setUser() {
     const profile: any = await this.keycloak.loadUserProfile();
-    console.log(profile);  
-    this.configService._configuration.currentUser = profile;
+    this.configService._configuration.currentUser.userId = profile.id;
+    this.configService._configuration.currentUser.email = profile.email;
+    this.configService._configuration.currentUser.emailVerified = profile.emailVerified;
+   
   }
 
 }
