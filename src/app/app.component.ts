@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { HeaderComponent } from './header/header.component.js';
+import { PrimeNG, ThemeConfigType } from 'primeng/config';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from "./footer/footer.component";
 
@@ -11,6 +12,21 @@ import { FooterComponent } from "./footer/footer.component";
 })
 export class AppComponent {
   title = 'perso_frontend';
-
-  constructor(){}
+  constructor(private primeng: PrimeNG) {
+    this.primeng.ripple.set(true);
+    const config: ThemeConfigType = {
+      theme: {
+        options: {
+              prefix: 'p',
+              darkModeSelector: 'system',
+              cssLayer: {
+                name: 'primeng',
+                order: 'theme, base, primeng, components, utilities'
+              },
+              ripple: true,
+            }
+      }
+    };
+    this.primeng.setThemeConfig(config);    
+  }
 }

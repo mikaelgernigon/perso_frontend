@@ -16,18 +16,17 @@ export const provideKeycloakAngular = () =>
   provideKeycloak({
     config: {
       realm: 'perso',
-      url: 'https://localhost:8443',
+      url: 'https://laroute.ddns.net:8443',
       clientId: 'perso_frontend'
     },
     initOptions: {
-      
-      silentCheckSsoRedirectUri: window.location.origin + '/callback',
-      checkLoginIframe: false
+      checkLoginIframe: false,
+      redirectUri: window.location.origin + '/home'
     },
     features: [
       withAutoRefreshToken({
         onInactivityTimeout: 'logout',
-        sessionTimeout: 60000
+        sessionTimeout: 600000
       })
     ],
     providers: [
@@ -39,3 +38,4 @@ export const provideKeycloakAngular = () =>
       }
     ]
   });
+

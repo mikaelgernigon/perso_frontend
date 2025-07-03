@@ -1,7 +1,12 @@
+@import "primeicons/primeicons.css";
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+
 * { margin: 0px; padding: 0px; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { border: 0; font-family: inherit; font-size: 100%; font-weight: inherit; margin: 0; outline: 0; padding: 0; vertical-align: baseline; }
+.body, .div, .span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, .label, legend, table, caption, tbody, tfoot, thead, tr, th, td { border: 0; font-family: inherit; font-size: 100%; font-weight: inherit; margin: 0; outline: 0; padding: 0; vertical-align: baseline; }
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary { display: block; }
-html, body, button, input, select, textarea { font-family: Arial; font-size: 12px; color: #8c806e; }
+.body, .button, .input, select, .textarea { font-family: Arial; font-size: 12px; color: #8c806e; }
 ul, ol { margin-top: 0; margin-bottom: 10px; }
 ul ul { margin-bottom: 0; }
 li { font-size: 13px; margin: 5px 0px 10px 0px; }
@@ -11,7 +16,7 @@ caption, th, td { font-weight: normal; text-align: left; }
 blockquote:before, blockquote:after, q:before, q:after { content: ""; }
 blockquote, q { -webkit-hyphens: none; -moz-hyphens: none; -ms-hyphens: none; hyphens: none; quotes: none; }
 a img { border: 0; }
-a, input { outline: none; }
+a, .input { outline: none; }
 a { color: #F06;  }
 a:hover { text-decoration: none; }
 h1, h2, h3, h4, h5, h6 { margin: 5px 0px 15px 0px; clear: both; font-weight: lighter; }
@@ -29,11 +34,13 @@ figure { margin: 0; }
 :-moz-placeholder { color: rgba(51, 51, 51, 0.7); }
 ::-moz-placeholder { color: rgba(51, 51, 51, 0.7); opacity: 1; /* Since FF19 lowers the opacity of the placeholder by default */ }
 :-ms-input-placeholder { color: rgba(51, 51, 51, 0.7); }
-input:focus, textarea:focus { background-color: #fff; border: 1px solid #c1c1c1; border: 1px solid rgba(51, 51, 51, 0.3); color: #333; }
-input:focus, select:focus { outline: 2px solid #c1c1c1; outline: 2px solid rgba(51, 51, 51, 0.3); }
+.input:focus, .textarea:focus { background-color: #fff; border: 1px solid #c1c1c1; border: 1px solid rgba(51, 51, 51, 0.3); color: #333; }
+.input:focus, select:focus { outline: 2px solid #c1c1c1; outline: 2px solid rgba(51, 51, 51, 0.3); }
 .hide { display: none;}
 
 .clear { clear: both; height: 0px; overflow: hidden; }
+
+
 
 /* <<< Design Holder >>> */
 .DesignHolder { position: relative; display: block; width: 100%; min-height: 100%; }
@@ -51,7 +58,7 @@ header .site-logo { padding: 30px 0px 0px 0px; width: 220px; float: left; transi
 header .site-logo h1 { margin: 0px; }
 header .site-logo h1 a { font-size: 36px; color: #fff; font-family: 'Open Sans', sans-serif; font-weight: 800; text-decoration: none; text-transform: uppercase; text-shadow: rgb(3, 3, 3) 0px 2px 5px; transition: all 0.7s ease;  }
 header .site-logo h1 a span { color: #ff9000; }
-header.smaller { padding: 0px 0px 0px 0px; height: 60px; transition: all 0.3s; background: rgba(0, 0, 0, 0.75); }
+header.smaller { padding: 0px 0px 0px 0px; height: 9rem; transition: all 0.3s; background: rgba(0, 0, 0, 0.75); }
 header.smaller .site-logo {padding: 13px 0px 0px 0px; }
 header.smaller .site-logo h1 { line-height: 30px; }
 header.smaller .site-logo h1 a { font-size: 30px;  }
@@ -291,11 +298,11 @@ header.smaller .Navigation li app-auth-button  { height: 60px; }
 .Get_sec .Leftside { width: 48.2%; float: left; }
 .Get_sec .Leftside fieldset { padding: 0px; margin: 0px; }
 .Get_sec .Leftside p { padding: 0px; margin: 0px 0px 25px 0px;  }
-.Get_sec .Leftside input.field { padding: 18px 20px 17px 20px; font-size: 14px; color: #979797; font-family: 'Open Sans', sans-serif; font-weight: 400; border: 0px; width: 100%; box-shadow: 0px 2px 6px 0px #242424; -webkit-box-shadow: 0px 2px 6px 0px #242424; -moz-box-shadow: 0px 2px 6px 0px #242424;
+.Get_sec .Leftside .input.field { padding: 18px 20px 17px 20px; font-size: 14px; color: #979797; font-family: 'Open Sans', sans-serif; font-weight: 400; border: 0px; width: 100%; box-shadow: 0px 2px 6px 0px #242424; -webkit-box-shadow: 0px 2px 6px 0px #242424; -moz-box-shadow: 0px 2px 6px 0px #242424;
 -o-box-shadow: 0px 2px 6px 0px #242424; border-radius: 0px; }
-.Get_sec .Leftside input:focus { outline: none;}
-.Get_sec .Leftside textarea { padding: 18px 20px 17px 20px; font-size: 14px; color: #979797; font-family: 'Open Sans', sans-serif; font-weight: 400; border: 0px; width: 100%; height: 156px; resize:none; box-shadow: 0px 2px 6px 0px #242424; -webkit-box-shadow: 0px 2px 6px 0px #242424; -moz-box-shadow: 0px 2px 6px 0px #242424; -o-box-shadow: 0px 2px 6px 0px #242424; border-radius: 0px; }
-.Get_sec .Leftside textarea:focus { outline: none;}
+.Get_sec .Leftside .input:focus { outline: none;}
+.Get_sec .Leftside .textarea { padding: 18px 20px 17px 20px; font-size: 14px; color: #979797; font-family: 'Open Sans', sans-serif; font-weight: 400; border: 0px; width: 100%; height: 156px; resize:none; box-shadow: 0px 2px 6px 0px #242424; -webkit-box-shadow: 0px 2px 6px 0px #242424; -moz-box-shadow: 0px 2px 6px 0px #242424; -o-box-shadow: 0px 2px 6px 0px #242424; border-radius: 0px; }
+.Get_sec .Leftside .textarea:focus { outline: none;}
 .Get_sec .Leftside .button { padding: 16px 0px 17px 0px; margin-top: -3px; font-size: 14px; color: #e9ecee; font-family: 'Open Sans', sans-serif; font-weight: 700; text-align: center; background: #e2850a; border: 0px; text-transform:uppercase; width: 100%; cursor: pointer; box-shadow: 0px 2px 6px 0px #242424; -webkit-box-shadow: 0px 2px 6px 0px #242424; -moz-box-shadow: 0px 2px 6px 0px #242424; -o-box-shadow: 0px 2px 6px 0px #242424; border-radius: 0px; transition: all 0.3s ease;}
 .Get_sec .Leftside .button:hover { background: #2d2d2d; color: #fff;}
 .Get_sec .Rightside { padding-top: 12px; width: 48.18%; float: right;}
@@ -329,18 +336,27 @@ footer .Cntr a:hover { color: #fff; }
 .Forum_sec .Leftside .Icon li:hover .text { background:#ff9000; color:  #fff !important; }
 
 /* <<< Profil >>> */
-.Profil_sec  { width: 100%; height: 687px; position: relative; background-size: cover; }
+.modalUploadPictureProfil { position: relative; display: inline-block; width: 60rem; height: 50rem; top: -30rem; background-color: aliceblue; z-index:4; }
+.Profil_sec{ padding: 114px 0px 90px 0px ; width: 100%; overflow: hidden; background: url(../img/Services-bg.jpg) top center no-repeat; background-size: cover; }
+.Profil_sec .Center { max-width: 1100px; margin: auto; overflow: hidden; text-align: center; }
+.imageContainer { position: relative; }
+.pictureHover { background-color: #000; opacity: 0.4; width: 10rem; height: 10rem; top: -10rem; left: 29.4rem; position: relative; border-radius: 50%; z-index: 2;}
+.labelUploadPictureProfil { vertical-align: middle; line-height: 5rem; background-color: transparent; width: 10rem; height: 10rem; top: -20rem; left: 29.4rem; position: relative;  border-radius: 50%; z-index: 3}
+.Profil_sec h1 { font-size: 56px; color: #fff; font-family: 'Oswald', sans-serif; font-weight: 400; margin: 0px; text-transform: uppercase; line-height: 60px; top: 0; left: 0;}
+.imgProfil { width: 10rem; height: 10rem; display: inline; border-radius: 50%; z-index: 1; position: relative; }
+.Profil_sec p { padding: 25px 0px 35px 0px; font-size: 14px; color: #d8dfe5; margin: 0px; font-family: 'Open Sans', sans-serif; line-height: 25px; font-weight: 400; }
+.Profil_sec .Line { border: solid 1px #ff9408; height: 2px; width: 252px; margin: auto; }
 
 /* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-   #loader-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; }
-   #loader { display: block; position: relative; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 3px solid transparent; border-top-color: #3498db; -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-   	animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ z-index: 1001; }
-   	#loader:before { content: ""; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; border-radius: 50%; border: 3px solid transparent;
-   	border-top-color: #e74c3c; -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-   animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ }
-   #loader:after { content: ""; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border-radius: 50%; border: 3px solid transparent;
+Author's custom styles
+========================================================================== */
+#loader-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; }
+#loader { display: block; position: relative; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 3px solid transparent; border-top-color: #3498db; -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+	animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ z-index: 1001; }
+	#loader:before { content: ""; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; border-radius: 50%; border: 3px solid transparent;
+	border-top-color: #e74c3c; -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ }
+#loader:after { content: ""; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border-radius: 50%; border: 3px solid transparent;
 border-top-color: #f9c922; -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */ animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ }
 
 @-webkit-keyframes spin {

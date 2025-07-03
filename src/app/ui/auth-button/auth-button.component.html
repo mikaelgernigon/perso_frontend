@@ -1,14 +1,14 @@
     @if (!authenticated) {
         <a href="#" (click)="login()" title="Se Connecter" class="active"><i class="fa fa-regular fa-user"></i></a>
-        <span class="menu-item-bg"></span>
+        <span class="span menu-item-bg"></span>
     } @else {
-        <button [matMenuTriggerFor]="account">Mon Compte</button>
+        <button class="button" [matMenuTriggerFor]="account">Mon Compte</button>
         <mat-menu #account="matMenu">
-            <button mat-menu-item  (click)="redirectToProfil()">
+            <button class="button" mat-menu-item  (click)="redirectToProfil()">
                 <mat-icon><i class="fa fa-solid fa-user"></i></mat-icon>
                 Mon Profil
             </button>
-            <button mat-menu-item (click)="logout()">
+            <button class="button" mat-menu-item (click)="logout()">
                 <mat-icon><i class="fa-solid fa-right-from-bracket"></i></mat-icon>
                 Se D&eacute;connecter
             </button>

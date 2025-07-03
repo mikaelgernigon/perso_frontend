@@ -25,6 +25,11 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "*",
+                "input": "src/public",
+                "output": "/"
               }
             ],
             "styles": [
@@ -34,7 +39,12 @@
               "src/assets/css/styles.css",
               "src/assets/css/font-awesome.min.css",
               "src/assets/css/media.css",
-              "src/assets/css/theme.css"
+              "src/assets/css/theme.css",
+              {
+                "input": "src/app/profil/profil.component.css",
+                "inject":true,
+                "bundleName": "profil"
+              }
             ],
             "scripts": ["src/assets/js/jquery-1.11.0.min.js","src/assets/js/jquery.sudoSlider.min.js","src/assets/js/global.js","src/assets/js/modernizr.js"]
           },
@@ -64,6 +74,13 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+              "proxyConfig": "proxy.config.js",
+              "allowedHosts": ["ressources-laroute.ddns.net"],
+              "ssl": true,
+              "sslKey": "server.keycloak.pem",
+              "sslCert": "server.keycloak.crt"
+          },
           "configurations": {
             "production": {
               "buildTarget": "perso_frontend:build:production"
@@ -98,7 +115,12 @@
               "src/assets/css/styles.css",
               "src/assets/css/font-awesome.min.css",
               "src/assets/css/media.css",
-              "src/assets/css/theme.css"
+              "src/assets/css/theme.css",
+              {
+                "input": "src/app/profil/profil.component.css",
+                "inject": true,
+                "bundleName": "profil"
+              }
             ],
             "scripts": ["src/assets/js/jquery-1.11.0.min.js","src/assets/js/jquery.sudoSlider.min.js","src/assets/js/global.js","src/assets/js/modernizr.js"]
           }

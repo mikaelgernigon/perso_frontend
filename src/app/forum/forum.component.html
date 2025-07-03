@@ -1,6 +1,6 @@
-<div class="Forum_sec row" id="forum">
-  <div class="Leftside col-2 row">
-    <div class="Icon col-12">
+<div class="div Forum_sec row" id="forum">
+  <div class="div Leftside col-2 row">
+    <div class="div Icon col-12">
       <ul>
         <li>
           <app-auth-button></app-auth-button>
@@ -26,10 +26,10 @@
         </li>
       </ul>
     </div>
-    <div class="col-12 row">
+    <div class="div col-12 row">
       <p>Popular Tags</p>
 
-      <div class="col-12">
+      <div class="div col-12">
         <a *ngFor="let tag of tags"
           (click)="setListTo('all', {tag: tag})"
           class="tag-default tag-pill">
@@ -37,16 +37,16 @@
         </a>
       </div>
 
-      <div [hidden]="tagsLoaded" class="col-12">
+      <div [hidden]="tagsLoaded" class="div col-12">
         Loading tags...
       </div>
 
-      <div [hidden]="!tagsLoaded || tags.length" class="col-12"> 0">
+      <div [hidden]="!tagsLoaded || tags.length" class="div col-12"> 0">
         No tags are here... yet.
       </div>
     </div>
   </div>  
-  <div class="col-10">
+  <div class="div col-10">
 <!--        <app-article-list [limit]="10" [config]="listConfig"></app-article-list>
     -->
       
