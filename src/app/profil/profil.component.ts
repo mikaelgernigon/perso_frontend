@@ -19,11 +19,11 @@ import { HttpEventType, HttpHeaders, HttpResponse } from '@angular/common/http';
 import Keycloak from 'keycloak-js';
 @Component({
   selector: 'app-profil',
-  imports: [ 
+  imports: [
     DialogModule,
-    ButtonModule, 
-    FileUploadModule, 
-    ToastModule, 
+    ButtonModule,
+    FileUploadModule,
+    ToastModule,
     ProgressBarModule,
     BadgeModule,
     OverlayBadgeModule,
@@ -59,7 +59,7 @@ export class ProfilComponent {
     this.user = this.configService._configuration.currentUser;
   }
 
-  
+
   setIsPictureHover(value: boolean): void {
     this.isPictureHover = value;
   }
@@ -90,7 +90,7 @@ export class ProfilComponent {
   onBeforeUpload($event: any) {
     this.headers = new HttpHeaders({
       'Accept': 'application/json',
-      'Content-Type':'application/json',
+      //'Content-Type':'application/json',
       'Authorization': 'Bearer ' + this.keycloak.token
     });
     $event.formData.append('userid', this.user.userId);
@@ -100,7 +100,7 @@ export class ProfilComponent {
     if(!!this.description && this.description.trim().length>0) {
       this.fileInput.upload();
     } else  {
-      alert("Pensez aux avaugles et saisissez une description de l'image"); 
+      alert("Pensez aux avaugles et saisissez une description de l'image");
     }
   }
 
@@ -135,12 +135,12 @@ export class ProfilComponent {
       this.description = "";
       this.fileInput.clearInputElement();
     }
-    this.visible = false;    
+    this.visible = false;
   }
 
   clearCallback(): void {
     this.description = "";
     this.fileInput.clear();
-  }  
+  }
 
 }
