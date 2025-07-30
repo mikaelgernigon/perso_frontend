@@ -1,19 +1,7 @@
 <div class="Profil_sec row" id="profil">
     <div class="div Center">
         <h1>Profil</h1>
-        <a href="#" (click)="displayLoadPictureModal()">
-            <div class="imageContainer">
-                <img class="imgProfil" (mouseout)="setIsPictureHover(false)" (mouseover)="setIsPictureHover(true)" [src]="srcProfil" [alt]="description" />
-                @if (isPictureHover) {
-                    <div class="pictureHover"></div>
-                    <div class="labelUploadPictureProfil" (mouseout)="setIsPictureHover(false)" (mouseover)="setIsPictureHover(true)">
-                        <span (mouseout)="setIsPictureHover(false)" (mouseover)="setIsPictureHover(true)"><i class="fa-solid fa-upload"></i></span>
-                        <br />
-                        <span (mouseout)="setIsPictureHover(false)" (mouseover)="setIsPictureHover(true)" >Upload une image ...</span>
-                    </div>
-                }
-            </div>
-        </a>
+
         <p> Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent<br> taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
         <div class="div Line"></div>
         <!-- \\ Begin Services Side  \\ -->
