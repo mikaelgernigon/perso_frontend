@@ -1,146 +1,158 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { DialogModule } from 'primeng/dialog';
-import { ButtonModule } from 'primeng/button';
-import { FileUpload, FileUploadModule } from 'primeng/fileupload';
-import { ToastModule } from 'primeng/toast';
-import { ProgressBarModule } from 'primeng/progressbar';
-import { BadgeModule } from 'primeng/badge';
-import { OverlayBadgeModule } from 'primeng/overlaybadge';
+import { Component, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { FileUploadService } from '../service/file-uploadService';
-import { Observable } from 'rxjs';
-import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { FormsModule } from '@angular/forms';
-import { TextareaModule } from 'primeng/textarea';
 import { ConfigService } from '../service/configService';
 import { User } from '../model/user';
-import { HttpEventType, HttpHeaders, HttpResponse } from '@angular/common/http';
 import Keycloak from 'keycloak-js';
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import { ButtonModule } from 'primeng/button';
+import { TextareaModule } from 'primeng/textarea';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { ImageService } from '../service/imageService';
+import { UserService } from '../service/user.service';
+import { Image } from '../model/image';
+import { throwError } from 'rxjs';
 @Component({
   selector: 'app-profil',
   imports: [
-    DialogModule,
+    UploadImageComponent,
     ButtonModule,
-    FileUploadModule,
-    ToastModule,
-    ProgressBarModule,
-    BadgeModule,
-    OverlayBadgeModule,
+    TextareaModule,
     InputTextModule,
     FloatLabelModule,
-    FormsModule,
-    TextareaModule
+    ReactiveFormsModule
   ],
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.css',
   providers: [ MessageService ]
 })
 export class ProfilComponent {
-  srcProfil:string = 'https://ressources-laroute.ddns.net:81/free/graphique/Claire.png';
-  description!:string;
-  isPictureHover: boolean = true;
-  visible: boolean = false;
-  progress: number = 0;
-  totalSize: number = 0;
-  index: number = 0;
-  currentFile?: File;
-  fileInfos?: Observable<any>;
-  user!: User;
-  message!: string;
-  uploadError: boolean = false;
-  headers!: any;
-   @ViewChild(FileUpload) fileInput!: FileUpload;
+  profileForm: FormGroup = new FormGroup({
+    idImage: new FormControl(''),
+    bio: new FormControl(''),
+    username: new FormControl(''),
+    email: new FormControl('')
+  });
+  image: Image;
+  user: User;
+  errorAddImageNotFound: boolean = false;
+  errorServerAddImage: boolean = false;
+  errorServerGetImageById: boolean = false;
+  successUpdatedUser: boolean = false;
+  errorUpdateUser: boolean = false;
+  errorUpdateUserKeycloak: boolean = false
   constructor(
     private keycloak: Keycloak,
     private configService: ConfigService,
-    private uploadService: FileUploadService
+    private imageService: ImageService,
+    private userService: UserService
   ) {
+    this.image = new Image();
     this.user = this.configService._configuration.currentUser;
+    this.reset();
   }
 
-
-  setIsPictureHover(value: boolean): void {
-    this.isPictureHover = value;
+  save() {
+    this.user.bio = this.profileForm.get('bio')?.value;
+    this.user.email = this.profileForm.get('email')?.value;
+    this.user.username = this.profileForm.get('username')?.value;
+    this.user.idImage = this.profileForm.get('idImage')?.value;
+    this.successUpdatedUser = false;
+    this.errorUpdateUserKeycloak = false;
+    this.errorUpdateUser = false;
+    this.userService.updateKeyCloak(this.user).subscribe({
+      next: this.handleUpdateUserKeycloakResponse.bind(this),
+      error: this.handleErrorUpdateUserKeycloak.bind(this)
+    })
   }
 
-  displayLoadPictureModal(){
-    this.visible = true;
+  handleUpdateUserKeycloakResponse(data: any) {
+    this.userService.updateUser(this.user).subscribe({
+      next: this.handleUpdateUserResponse.bind(this),
+      error: this.handleErrorUpdateUser.bind(this)
+    })
   }
 
-  choose($event: any, chooseCallback: any){
-    if(!!this.fileInput) {
-      this.fileInput.advancedFileInput.nativeElement.click();
-    } else {
-      console.warn('file Input is undefined');
-    }
+  handleErrorUpdateUserKeycloak(err: any) {
+    this.errorUpdateUserKeycloak = true;
+    throwError(() => err);
   }
 
-  handleResponseUploadPictureProfile(filename: string): void {
-    console.log('file uploaded successfully');
-    this.uploadError = false;
+  handleUpdateUserResponse(user: User) {
+    this.successUpdatedUser = true;
   }
 
-  handleErrorResponseUploadPictureProfile(err: any) : void {
-    console.error('file not uploaded for userid : ', this.user.userId);
-    console.error('error upload : ', err);
-    this.uploadError = true;
+  handleErrorUpdateUser(err: any) {
+    this.errorUpdateUser = true;
+    throwError(() => err);
   }
-
-  onBeforeUpload($event: any) {
-    this.headers = new HttpHeaders({
-      'Accept': 'application/json',
-      //'Content-Type':'application/json',
-      'Authorization': 'Bearer ' + this.keycloak.token
+  
+  reset() {
+    this.profileForm.get('username')?.setValue(this.user.username);
+    this.profileForm.get('email')?.setValue(this.user.email);
+    this.profileForm.get('bio')?.setValue(this.user.bio);
+    this.profileForm.get('idImage')?.setValue(this.user.idImage);
+    this.image = new Image();
+    this.imageService.getImageById(this.user.idImage).subscribe({
+      next: this.handleGetImageByIdResponse.bind(this),
+      error: this.handleErrorGetImageById.bind(this)
     });
-    $event.formData.append('userid', this.user.userId);
   }
 
-  uploadEvent(uploadCallback: any){
-    if(!!this.description && this.description.trim().length>0) {
-      this.fileInput.upload();
-    } else  {
-      alert("Pensez aux avaugles et saisissez une description de l'image");
+  handleGetImageByIdResponse(image: Image) {
+    this.image.chemin = image.chemin;
+    this.image.description = image.description;
+    this.errorServerGetImageById = false;
+  }
+
+  handleErrorGetImageById(err: any) {
+    this.errorServerGetImageById = false;
+    switch(err.status) {
+      case 404: this.image.chemin = "https://ressources-laroute.ddns.net:81/free/graphique/Claire.png";
+                this.image.description = "";
+                break;
+      default: this.errorServerGetImageById = true;
+               throwError(() => err);
+               break; 
     }
   }
-
-  onTemplatedUpload(){
-    console.log('on template upload');
+  
+  updatePassword(){
+    this.keycloak.login(
+      {
+        "redirectUri": "https://ressources-laroute.ddns.net:4200/callback",
+        "action": "UPDATE_PASSWORD"
+      }
+    )
   }
 
-  onSelectedFile($event: any){
-    console.log('select', $event);
+  handleEventSubmitImageProfileForm($event: any): void {
+    this.image.chemin = $event.srcProfil;
+    this.image.description = $event.decription;
+    this.imageService.addImage(this.image).subscribe({
+      next: this.handleAddImageResponse.bind(this),
+      error: this.handleErrorAddImage.bind(this)
+    });
   }
 
-  formatSize(size: any): number {
-    console.log('size', size);
-    const sizeInK: number = Math.round(size/1024);
-    return sizeInK;
+  handleAddImageResponse(image: Image) {
+    this.image = image;
+    this.profileForm.get('idImage')?.setValue(this.image.id);
+    this.errorAddImageNotFound = false;
+    this.errorServerAddImage = false;
   }
 
-  onRemoveTemplatingFile($event: any, file: any, removeFileCallback: any){
-    console.log('remove event', $event);
-    console.log('remove file', file);
-    console.log('remove callback', removeFileCallback);
-    this.description = "";
-    this.fileInput.remove($event, 0);
-  }
-
-  onSelectedFiles($event: any) {
-    console.log('selectedFiles', $event);
-  }
-
-  close(): void {
-    if(this.fileInput.files.length==1) {
-      this.description = "";
-      this.fileInput.clearInputElement();
+  handleErrorAddImage(err: any) {
+    this.errorAddImageNotFound = false;
+    this.errorServerAddImage = false;
+    switch(err.status) {
+      case 404: this.errorAddImageNotFound = true
+                break;
+      default: this.errorServerAddImage = true;
+               break; 
     }
-    this.visible = false;
-  }
-
-  clearCallback(): void {
-    this.description = "";
-    this.fileInput.clear();
+    throwError(() => err);
   }
 
 }

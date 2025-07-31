@@ -2,39 +2,41 @@ import { Image } from './image';
 
 export class User {
     id: number;
-    nickname: string;
+    username: string;
     email: string;
-    photoProfil: Image;
+    idImage: number;
     description: string;
     createdAt: Date;
     emailVerified: boolean;
     userId: string;
     isSocial: boolean;
-
+    bio: string;
 
 
     constructor() {
         this.id = 0;
-        this.nickname = '';
+        this.username = '';
         this.email = '';
-        this.photoProfil = new Image();
+        this.idImage = 0;
         this.description = '';
         this.createdAt = new Date();
         this.emailVerified = false;
         this.userId = '';
         this.isSocial = false;
+        this.bio = '';
     }
 
     toString(): string {
         const str = '"id":"' + this.id + '",' +
-        '"nickname":"' +this.nickname + '",' +
+        '"username":"' +this.username + '",' +
         '"email":"'+ this.email + '",' +
-        '"photoProfil":{' + this.photoProfil.toString() + '},' +
+        '"idImage":' + this.idImage + ',' +
         '"description":"' + this.description + '",' +
         '"createdAt":"' + this.createdAt + '",' +
         '"emailVerified":"' + this.emailVerified + '",' +
         '"userId":"' + this.userId + '",' +
-        '"isSocial":"' + this.isSocial + '",' + ']';
+        '"isSocial":"' + this.isSocial + '",' +
+        '"bio":"' + this.bio + '",' + ']';
         return str;
     }
 }

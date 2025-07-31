@@ -1,21 +1,18 @@
 export class Image {
 
     id: number;
-    content: string;
-    tags: string;
+    chemin: string;
     description: string;
 
     constructor(){
         this.id = 0;
-        this.content = '';
-        this.tags = '';
+        this.chemin = '';
         this.description = '';
     }
 
     toString(): string {
         const str = '"id":"' + this.id + '",' +
-        '"content":"'+ this.content + '",' +
-        '"tags":"'+ this.tags + '",' +
+        '"chemin":"' + this.chemin + '",' +
         '"description":"' + this.description + '"'; 
         return str;
     }

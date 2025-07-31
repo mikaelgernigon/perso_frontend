@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import Keycloak from 'keycloak-js';
 @Injectable({
@@ -12,25 +12,25 @@ export class FileUploadService {
     private http: HttpClient
   ) { }
 
-  upload(file: File, userid: string): Observable<HttpEvent<any>> {
+  upload(file: File, userid: string): Observable<any> {
     const formData: FormData = new FormData();
 
     formData.append('file', file);
-    formData.append('userid', userid);
+    formData.append('userId', userid);
 
-    const headers: HttpHeaders = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type':'application/json',
-      'Authorization': 'Bearer ' + this.keycloak.token
-    });
+    const headers = new HttpHeaders();
+    headers.set('Accept', 'multipart/form-data');
+    headers.set('encType', 'multipart/form-data');
+    headers.set('Authorization', 'Bearer ' + this.keycloak.token);
+    let params = new HttpParams();
 
-    const req = new HttpRequest('POST', `ressources/image`, formData, {
+    const req = new HttpRequest('POST', 'https://ressources-laroute.ddns.net:8080//image/', formData, {
       headers: headers,
       reportProgress: true,
       responseType: 'json'
     });
 
-    return this.http.request(req);
+    return this.http.post('https://ressources-laroute.ddns.net:8080/image/',formData,{headers: headers});
   }
 
   getFiles(): Observable<any> {

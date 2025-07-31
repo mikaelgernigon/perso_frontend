@@ -28,5 +28,5 @@ export class AppComponent {
       }
     };
     this.primeng.setThemeConfig(config);    
-  }
+                                 }
 }

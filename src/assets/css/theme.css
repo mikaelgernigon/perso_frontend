@@ -1,6 +1,5 @@
 @import "primeicons/primeicons.css";
-@import "tailwindcss";
-@plugin "tailwindcss-primeui";
+
 
 
 * { margin: 0px; padding: 0px; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -336,12 +335,13 @@ footer .Cntr a:hover { color: #fff; }
 .Forum_sec .Leftside .Icon li:hover .text { background:#ff9000; color:  #fff !important; }
 
 /* <<< Profil >>> */
-.modalUploadPictureProfil { position: relative; display: inline-block; width: 60rem; height: 50rem; top: -30rem; background-color: aliceblue; z-index:4; }
-.Profil_sec{ padding: 114px 0px 90px 0px ; width: 100%; overflow: hidden; background: url(../img/Services-bg.jpg) top center no-repeat; background-size: cover; }
+.modalUploadPictureProfil { position: relative; display: inline-block; width: 60rem; height: 50rem; top: -5rem; background-color: aliceblue; z-index:4; }
+.Profil_sec{ padding: 10rem 0px 90px 0px ; width: 100%; overflow: hidden; background: url(../img/Services-bg.jpg) top center no-repeat; background-size: cover; }
 .Profil_sec .Center { max-width: 1100px; margin: auto; overflow: hidden; text-align: center; }
-.imageContainer { position: relative; }
+.Profil_sec .Profilside { padding: 76px 0px 30px 0px; width: 100%; overflow: hidden; }
+.imageContainer { position: relative; height: 10rem; }
 .pictureHover { background-color: #000; opacity: 0.4; width: 10rem; height: 10rem; top: -10rem; left: 29.4rem; position: relative; border-radius: 50%; z-index: 2;}
-.labelUploadPictureProfil { vertical-align: middle; line-height: 5rem; background-color: transparent; width: 10rem; height: 10rem; top: -20rem; left: 29.4rem; position: relative;  border-radius: 50%; z-index: 3}
+.labelUploadPictureProfil { vertical-align: middle; line-height: 5rem; color: #ff9000; background-color: transparent; width: 10rem; height: 10rem; top: -20rem; left: 29.4rem; font-size: larger; position: relative;  border-radius: 50%; z-index: 3}
 .Profil_sec h1 { font-size: 56px; color: #fff; font-family: 'Oswald', sans-serif; font-weight: 400; margin: 0px; text-transform: uppercase; line-height: 60px; top: 0; left: 0;}
 .imgProfil { width: 10rem; height: 10rem; display: inline; border-radius: 50%; z-index: 1; position: relative; }
 .Profil_sec p { padding: 25px 0px 35px 0px; font-size: 14px; color: #d8dfe5; margin: 0px; font-family: 'Open Sans', sans-serif; line-height: 25px; font-weight: 400; }

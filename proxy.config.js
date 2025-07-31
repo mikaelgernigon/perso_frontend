@@ -15,11 +15,23 @@ const PROXY_CONFIG = [
         context: [
             "/ressources/**"
         ],
-        target: "http://ressources-laroute.ddns.net:8080/",
-        secure: false,
+        target: "https://ressources-laroute.ddns.net:8080/",
+        secure: true,
         logLevel: "debug",
         pathRewrite: {
-            "^/api": ""
+            "^/ressources": ""
+        },
+        changeOrigin: true
+    },
+    {
+        context: [
+            "/keycloak/**"
+        ],
+        target: "https://laroute.ddns.net:8443/",
+        secure: true,
+        logLevel: "debug",
+        pathRewrite: {
+            "^/keycloak": ""
         },
         changeOrigin: true
     }

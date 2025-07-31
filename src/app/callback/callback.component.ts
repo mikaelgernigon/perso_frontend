@@ -5,7 +5,7 @@ import { ConfigService } from '../service/configService';
 import { Router } from '@angular/router';
 import { UserAdd } from '../model/useradd';
 import { UserService } from '../service/user.service';
-import { catchError, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 
 @Component({
@@ -38,6 +38,7 @@ export class CallbackComponent implements OnInit {
       this.configService.getConfig().subscribe( 
         data => {
           this.configService._configuration.accessToken = this.keycloak.token!;
+          console.log('token', this.configService._configuration.accessToken);
           this.configService._configuration = data;
           this.setUser(profile);
         }
@@ -51,13 +52,13 @@ export class CallbackComponent implements OnInit {
   setUser(profile: any) {
     this.configService._configuration.currentUser.userId = profile.id;
     this.configService._configuration.currentUser.email = profile.email;
-    this.configService._configuration.currentUser.nickname = profile.username;
+    this.configService._configuration.currentUser.username = profile.username;
     this.configService._configuration.currentUser.description = "";
     this.configService._configuration.currentUser.emailVerified = profile.emailVerified;
     
     this.userAdd.email = this.configService._configuration.currentUser.email;
     this.userAdd.userId = this.configService._configuration.currentUser.userId;
-    this.userAdd.username = this.configService._configuration.currentUser.nickname;
+    this.userAdd.username = this.configService._configuration.currentUser.username;
     this.userAdd.bio = this.configService._configuration.currentUser.description;
     this.userService.getUserByUserId(this.userAdd.userId).subscribe({
       next: this.handleGetUserResponse.bind(this),
@@ -67,7 +68,6 @@ export class CallbackComponent implements OnInit {
 
   handleGetUserResponse(user: User) {
     this.configService._configuration.currentUser = user;
-    console.log('profil', this.configService._configuration.currentUser);
     this.router.navigate(['/profil']);
   }
 
@@ -86,12 +86,11 @@ export class CallbackComponent implements OnInit {
   }
   handleAddUserResponse(user: User) {
     this.configService._configuration.currentUser = user;
-    console.log('profil', this.configService._configuration.currentUser);
     this.router.navigate(['/profil']);
   }
 
   handleErrorAddUser(err: any) {
-    console.log('error add', err);
+    console.error('error add', err);
     this.router.navigate(['/error']);
     throwError(() => err);
   }

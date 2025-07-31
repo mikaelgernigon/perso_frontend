@@ -31,6 +31,18 @@ export class UserService {
         ,{ headers: headers })
   }
 
+  public updateUser(user: User): Observable<any> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type':'application/json',
+      'Authorization': 'Bearer ' + this.keycloak.token
+    });
+    return this.httpClient
+        .put('/api/user/', 
+          user
+        ,{ headers: headers })
+  }
+
   public getUserByUserId(userId: string): Observable<any> {
     const headers: HttpHeaders = new HttpHeaders({
       'Accept': 'application/json',
@@ -42,5 +54,16 @@ export class UserService {
         ,{ headers: headers })
   }
 
+  updateKeyCloak(user: User) {
+    const url= '/keycloak//admin/realms/mcp/users/' + user.userId;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.keycloak.token })
+    };
+    const data = {
+      "username": user.username,
+      "email": user.email
+    }
+    return this.httpClient.put(url, data, httpOptions);
+  }
 
 }

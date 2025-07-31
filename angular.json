@@ -44,6 +44,11 @@
                 "input": "src/app/profil/profil.component.css",
                 "inject":true,
                 "bundleName": "profil"
+              },
+              {
+                "input": "src/app/profil/upload-image/upload-image.component.css",
+                "inject":true,
+                "bundleName": "upload-image"
               }
             ],
             "scripts": ["src/assets/js/jquery-1.11.0.min.js","src/assets/js/jquery.sudoSlider.min.js","src/assets/js/global.js","src/assets/js/modernizr.js"]
@@ -78,8 +83,8 @@
               "proxyConfig": "proxy.config.js",
               "allowedHosts": ["ressources-laroute.ddns.net"],
               "ssl": true,
-              "sslKey": "server.keycloak.pem",
-              "sslCert": "server.keycloak.crt"
+              "sslCert": "/etc/letsencrypt/live/ressources-laroute.ddns.net/fullchain.pem",
+              "sslKey": "/etc/letsencrypt/live/ressources-laroute.ddns.net/privkey.pem"
           },
           "configurations": {
             "production": {

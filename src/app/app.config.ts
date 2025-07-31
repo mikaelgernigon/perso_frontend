@@ -8,6 +8,7 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { provideKeycloakAngular } from './keycloak.config';
 import { UserService } from './service/user.service';
+import { ImageService } from './service/imageService';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(), 
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes, withComponentInputBinding()),
-    UserService
+    UserService,
+    ImageService
   ]
 };
