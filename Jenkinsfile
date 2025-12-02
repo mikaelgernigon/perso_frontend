@@ -74,10 +74,10 @@ pipeline {
 
     // --- Actions après le pipeline ---
     post {
-        always {
+        //always {
             // Nettoie l'espace de travail sur l'agent Jenkins pour économiser de l'espace
             //cleanWs() 
-        }
+        //}
         success {
             echo 'Pipeline de construction Angular terminé avec succès !'
         }
