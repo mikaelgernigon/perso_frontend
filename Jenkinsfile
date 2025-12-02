@@ -63,10 +63,6 @@ pipeline {
         // --- Étape 5 : Déploiement (Optionnel) ---
         // Cette étape varie énormément selon votre environnement (AWS S3, NGINX, Docker, etc.)
         stage('Déploiement') {
-            when {
-                // Déploiement uniquement si c'est la branche 'main' ou 'master'
-                branch 'main' 
-            }
             steps {
                 echo 'Déploiement sur le serveur de production...'
                 // Exemple : Copie des fichiers vers un serveur distant via SCP
