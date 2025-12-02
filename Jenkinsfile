@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo 'Installation des dépendances npm...'
                 // 'npm ci' est préféré à 'npm install' dans les environnements CI pour la rapidité et la fiabilité
-                SH 'npm install'
+                sh 'npm install'
                 sh 'npm ci' 
                 sh 'npm install -g @angular/cli'
                 sh 'npm install @angular/cli'
