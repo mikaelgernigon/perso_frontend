@@ -63,8 +63,8 @@ pipeline {
             steps {
                 echo 'Déploiement sur le serveur de production...'
                 // Exemple : Copie des fichiers vers un serveur distant via SCP
-                sh 'cp -Rf /root/.jenkins/workspace/perso.frontend/dist/perso_frontend/browser/* /var/www/html/'
-                sh 'cp -Rf /root/.jenkins/workspace/perso.frontend/dist/perso_frontend/browser/* /tmp/'
+                sh 'sudo cp -Rf dist/perso_frontend/browser/* /var/www/html/'
+                sh 'cp -Rf dist/perso_frontend/browser/* /tmp/'
                 
                 // Ou exécution d'un script de déploiement spécifique
                 // sh './deploy-script.sh'
