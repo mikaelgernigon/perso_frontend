@@ -14,16 +14,7 @@ pipeline {
             steps {
                 echo 'Installation des dépendances npm...'
                 // 'npm ci' est préféré à 'npm install' dans les environnements CI pour la rapidité et la fiabilité
-                sh 'npm install'
                 sh 'npm ci' 
-                sh 'npm install -g @angular/cli'
-                sh 'npm install @angular/cli'
-                sh 'rm -rf node_modules'
-                sh 'rm -rf dist'
-                sh 'npm cache clean --force'
-
-                // Réinstallez
-                sh 'npm install'
 
                 // Réessayez
                 //sh 'ng test'
@@ -72,8 +63,8 @@ pipeline {
             steps {
                 echo 'Déploiement sur le serveur de production...'
                 // Exemple : Copie des fichiers vers un serveur distant via SCP
-                sh 'cp -Rf dist/browser/* /var/www/html/'
-                sh 'cp -Rf dist/browser/* /tmp/'
+                sh 'cp -Rf /root/.jenkins/workspace/perso.frontend/dist/perso_frontend/* /var/www/html/'
+                sh 'cp -Rf /root/.jenkins/workspace/perso.frontend/dist/perso_frontend/* /tmp/'
                 
                 // Ou exécution d'un script de déploiement spécifique
                 // sh './deploy-script.sh'
@@ -85,7 +76,7 @@ pipeline {
     post {
         always {
             // Nettoie l'espace de travail sur l'agent Jenkins pour économiser de l'espace
-            cleanWs() 
+            //cleanWs() 
         }
         success {
             echo 'Pipeline de construction Angular terminé avec succès !'
