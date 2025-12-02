@@ -14,7 +14,19 @@ pipeline {
             steps {
                 echo 'Installation des dépendances npm...'
                 // 'npm ci' est préféré à 'npm install' dans les environnements CI pour la rapidité et la fiabilité
+                SH 'npm install'
                 sh 'npm ci' 
+                sh 'npm install -g @angular/cli'
+                sh 'npm install @angular/cli'
+                sh 'rm -rf node_modules'
+                sh 'rm -rf dist'
+                sh 'npm cache clean --force'
+
+                // Réinstallez
+                sh 'npm install'
+
+                // Réessayez
+                sh 'ng test'
             }
         }
         
