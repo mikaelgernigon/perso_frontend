@@ -15,7 +15,7 @@ pipeline {
                 checkout scm 
             }
         }
-                
+
         // --- Étape 1 : Préparation et Dépendances ---
         stage('Installation des Dépendances') {
             steps {
@@ -70,7 +70,7 @@ pipeline {
             steps {
                 echo 'Déploiement sur le serveur de production...'
                 // Exemple : Copie des fichiers vers un serveur distant via SCP
-                sh 'scp -i /root/.jenkins/workspace/perso.frontend/dist/perso_frontend/browser/* mikael@laroute.ddns.net:/var/www/html/'
+                sh 'scp dist/perso_frontend/browser/* mikael@laroute.ddns.net:/var/www/html/'
                
                 // Ou exécution d'un script de déploiement spécifique
                 // sh './deploy-script.sh'
