@@ -4,7 +4,7 @@ pipeline {
     // Configurez les outils si vous utilisez le plugin "NodeJS" de Jenkins
     tools {
         // Remplacez 'NodeJS 18' par le nom de votre installation NodeJS configurée dans Jenkins
-        nodejs 'NodeJS 22' 
+        nodejs 'NodeJS 22.12.0' 
     }
 
     stages {
