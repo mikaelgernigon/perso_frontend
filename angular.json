@@ -80,7 +80,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-              "proxyConfig": "proxy.config.js",
+              "proxyConfig": "proxy.config.json",
               "allowedHosts": ["ressources-laroute.ddns.net"],
               "ssl": true,
               "sslCert": "/etc/letsencrypt/live/ressources-laroute.ddns.net/fullchain.pem",

@@ -17,17 +17,17 @@
             </button>
             <br />
             <p-floatlabel>
-                <input pInputText id="inputEmail" autocomplete="off" />
+                <input pInputText id="inputEmail" value="{{user.email}}" autocomplete="off" />
                 <label for="inputEmail">e-mail</label>
             </p-floatlabel>
             <br />
             <p-floatlabel>
-                <input pInputText id="inputUserName" autocomplete="off" />
+                <input pInputText id="inputUserName" value="{{user.username}}"autocomplete="off" />
                 <label for="inputUserName">username</label>
             </p-floatlabel>
             <br />
             <p-floatlabel>
-                <textarea pTextarea id="txtAreaBio" rows="10" cols="60" style="resize: none" class="h-full"></textarea>
+                <textarea pTextarea id="txtAreaBio" rows="10" cols="60" style="resize: none" class="h-full" value="{{user.bio}}"></textarea>
                 <label for="txtAreaBio">bio</label>
             </p-floatlabel>
         </div>

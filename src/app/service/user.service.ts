@@ -25,8 +25,9 @@ export class UserService {
       'Content-Type':'application/json',
       'Authorization': 'Bearer ' + this.keycloak.token
     });
+    const endPoint = '/api/user/';
     return this.httpClient
-        .post('/api/user/', 
+        .post(endPoint, 
           useradd
         ,{ headers: headers })
   }
@@ -46,7 +47,8 @@ export class UserService {
   public getUserByUserId(userId: string): Observable<any> {
     const headers: HttpHeaders = new HttpHeaders({
       'Accept': 'application/json',
-      'Content-Type':'application/json'
+      'Content-Type':'application/json',
+      'Authorization': 'Bearer ' + this.keycloak.token
     });
     const endpoint = '/api/user/userid/' + userId;
     return this.httpClient

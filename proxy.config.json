@@ -1,0 +1,29 @@
+{
+   "/api/**": {
+        "target": "http://laroute.ddns.net:8088/",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/api": ""
+        }
+    },
+    "/ressources/**":  {
+        "target": "https://ressources-laroute.ddns.net:8080/",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/ressources": ""
+        }
+    },
+    "/keycloak/**": {
+        "target": "https://laroute.ddns.net:8443/",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/keycloak": ""
+        }
+    }
+}

@@ -41,11 +41,11 @@ export class AuthButtonComponent {
   }
 
   login() {
-    this.keycloak.login({redirectUri: 'https://ressources-laroute.ddns.net:4200/callback'});
+    this.keycloak.login({redirectUri: 'https://localhost:4200/callback'});
   }
 
   logout() {
-    var logoutOptions = { redirectUri : "https://ressources-laroute.ddns.net:4200/home" };
+    var logoutOptions = { redirectUri : "https://localhost:4200/home" };
     this.keycloak.logout(logoutOptions)
     .then((success) => {
       console.log("--> log: logout success ", success );

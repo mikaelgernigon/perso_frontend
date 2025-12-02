@@ -109,7 +109,8 @@ export class ProfilComponent {
   handleErrorGetImageById(err: any) {
     this.errorServerGetImageById = false;
     switch(err.status) {
-      case 404: this.image.chemin = "https://ressources-laroute.ddns.net:81/free/graphique/Claire.png";
+      case 400: 
+      case 404: this.image.chemin = "https://ressources-laroute.ddns.net:81/images/free/graphique/Claire.png";
                 this.image.description = "";
                 break;
       default: this.errorServerGetImageById = true;

@@ -17,7 +17,7 @@ constructor (private keycloak: Keycloak, private httpClient: HttpClient){}
       'Authorization': 'Bearer ' + this.keycloak.token
     });
     return this.httpClient
-        .post('/api/image/', 
+        .post('/api/image', 
           image
         ,{ headers: headers })
   }
