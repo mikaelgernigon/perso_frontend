@@ -8,7 +8,14 @@ pipeline {
     }
 
     stages {
-        
+        stage('Checkout') {
+            steps {
+                // C'est l'étape qui crée le répertoire Git. 
+                // Assurez-vous qu'elle s'exécute correctement.
+                checkout scm 
+            }
+        }
+                
         // --- Étape 1 : Préparation et Dépendances ---
         stage('Installation des Dépendances') {
             steps {
