@@ -10,7 +10,8 @@ import { SponsorsComponent } from './about/sponsors/sponsors.component';
 import { VisionComponent } from './about/vision/vision.component';
 import { CallbackComponent } from './callback/callback.component';
 import { ProfilComponent } from './profil/profil.component';
-
+import { ErrorComponent } from './error/error.component';
+import { AuthGuardConnectedService } from './service/auth-guard-connected.service';
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'about', component: AboutComponent, children: [
@@ -23,6 +24,7 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'forum', component: ForumComponent },
     { path: 'callback', component: CallbackComponent },
-    { path: 'profil', component: ProfilComponent },
-    { path: '', component: HomeComponent },
-];
+    { path: 'profil', component: ProfilComponent, canActivate: [AuthGuardConnectedService] },
+    { path: 'error', component: ErrorComponent },
+    { path: '', component: HomeComponent}
+]

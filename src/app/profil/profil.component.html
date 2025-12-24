@@ -2,12 +2,24 @@
     <div class="div Center">
         <h1>Profil</h1>
         <br />
-        <app-upload-image [srcProfil]="image.chemin" (eventSubmit)="handleEventSubmitImageProfileForm($event)"></app-upload-image>
+        <a style="cursor: pointer" (click)="openDialog('3000ms', '1500ms')">
+            <div class="imageContainer">
+                <img class="imgProfil" (mouseout)="setIsPictureHover(false)" (mouseover)="setIsPictureHover(true)" [src]="image.chemin" [alt]="image.description" />
+                @if (isPictureHover) {
+                    <div class="pictureHover"></div> 
+                    <div class="labelUploadPictureProfil" (mouseout)="setIsPictureHover(false)" (mouseover)="setIsPictureHover(true)">
+                        <span (mouseout)="setIsPictureHover(false)" (mouseover)="setIsPictureHover(true)"><i class="fa-solid fa-upload"></i></span>
+                        <br />
+                        <span (mouseout)="setIsPictureHover(false)" (mouseover)="setIsPictureHover(true)" >Upload une image ...</span>
+                    </div>
+                }
+            </div>
+        </a>
         <br />
         <div class="div Line"></div>
         <br />
         <div class="div Profilside">
-            <br />
+        <!--    <br />
             <p-button label="Save" severity="success" (click)="save()" icon="pi pi-check" />
             <p-button label="Reset" severity="danger" (click)="reset()" icon="pi pi-times"/>
             <br />
@@ -30,6 +42,7 @@
                 <textarea pTextarea id="txtAreaBio" rows="10" cols="60" style="resize: none" class="h-full" value="{{user.bio}}"></textarea>
                 <label for="txtAreaBio">bio</label>
             </p-floatlabel>
+        -->
         </div>
         <!-- // End Services Side // -->
     </div>

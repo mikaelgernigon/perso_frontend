@@ -1,0 +1,23 @@
+.border {
+    border: 1px solid lightskyblue !important;
+    padding: 1rem;
+    border-radius: 3rem;
+    margin-bottom: 1rem;
+}
+.cadreImage {
+  display: flex;
+}
+.listImage {
+  display: flex;
+  padding: 1rem;
+}
+
+.picture {
+  width: 5rem;
+}
+
+img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}

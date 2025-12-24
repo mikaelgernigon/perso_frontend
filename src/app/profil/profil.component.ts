@@ -1,31 +1,23 @@
-import { Component, ViewChild } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { ConfigService } from '../service/configService';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { User } from '../model/user';
 import Keycloak from 'keycloak-js';
-import { UploadImageComponent } from './upload-image/upload-image.component';
-import { ButtonModule } from 'primeng/button';
-import { TextareaModule } from 'primeng/textarea';
-import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { ImageService } from '../service/imageService';
 import { UserService } from '../service/user.service';
 import { Image } from '../model/image';
 import { throwError } from 'rxjs';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DialogUploadImageComponent } from '../dialog-upload-image/dialog-upload-image.component';
+import { environment } from '../../environment/environment';
 @Component({
   selector: 'app-profil',
   imports: [
-    UploadImageComponent,
-    ButtonModule,
-    TextareaModule,
-    InputTextModule,
-    FloatLabelModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.css',
-  providers: [ MessageService ]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilComponent {
   profileForm: FormGroup = new FormGroup({
@@ -35,21 +27,25 @@ export class ProfilComponent {
     email: new FormControl('')
   });
   image: Image;
-  user: User;
+  user!:any;
   errorAddImageNotFound: boolean = false;
   errorServerAddImage: boolean = false;
   errorServerGetImageById: boolean = false;
   successUpdatedUser: boolean = false;
   errorUpdateUser: boolean = false;
   errorUpdateUserKeycloak: boolean = false
+  isPictureHover: boolean = false;
+  imgUrl = environment.imgUrl;
+  readonly dialog = inject(MatDialog);
+
   constructor(
     private keycloak: Keycloak,
-    private configService: ConfigService,
     private imageService: ImageService,
     private userService: UserService
   ) {
     this.image = new Image();
-    this.user = this.configService._configuration.currentUser;
+    const currentUser = localStorage.getItem('currentUser');
+    if(currentUser) this.user = JSON.parse(currentUser);
     this.reset();
   }
 
@@ -110,8 +106,8 @@ export class ProfilComponent {
     this.errorServerGetImageById = false;
     switch(err.status) {
       case 400: 
-      case 404: this.image.chemin = "https://ressources-laroute.ddns.net:81/images/free/graphique/Claire.png";
-                this.image.description = "";
+      case 404: this.image.chemin = this.imgUrl+"/free/graphique/Claire.png";
+                this.image.description = "Image de Masque Mexicain de Femme";
                 break;
       default: this.errorServerGetImageById = true;
                throwError(() => err);
@@ -119,6 +115,10 @@ export class ProfilComponent {
     }
   }
   
+  setIsPictureHover(value: boolean): void {
+    this.isPictureHover = value;
+  }
+
   updatePassword(){
     this.keycloak.login(
       {
@@ -129,8 +129,7 @@ export class ProfilComponent {
   }
 
   handleEventSubmitImageProfileForm($event: any): void {
-    this.image.chemin = $event.srcProfil;
-    this.image.description = $event.decription;
+    this.image = $event
     this.imageService.addImage(this.image).subscribe({
       next: this.handleAddImageResponse.bind(this),
       error: this.handleErrorAddImage.bind(this)
@@ -156,4 +155,15 @@ export class ProfilComponent {
     throwError(() => err);
   }
 
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogUploadImageComponent, {
+      width: '1500px',
+      height: '1000px',
+      enterAnimationDuration,
+      exitAnimationDuration
+    });
+  }
+  
 }
+
+

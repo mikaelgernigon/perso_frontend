@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Téléchargement d'Images</h1>
+<mat-dialog-content>
+    <form (ngSubmit)="closeAndSubmit()">
+        <button matIconButton aria-label="Validation" type="submit" [disabled]="!image">
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    check
+                </span>
+            </mat-icon>
+        </button>
+        <div class="border">
+            <h2>Liste des Images uploadées par {{user.username}}</h2>
+            <div class="row cadreImage">
+                @for (file of files;track $index) {
+                    <div class="col-2 listImage">
+                        <div class="picture">
+                            <img role="presentation" [alt]="file.description" [src]="file.chemin"  />
+                        </div>
+                        <span class="font-semibold text-ellipsis max-w-60 whitespace-nowrap overflow-hidden">{{ file.name }}</span>
+                        <mat-icon>
+                            <span class="material-symbols-outlined">
+                                download_done
+                            </span>
+                        </mat-icon>
+                        <button matIconButton aria-label="Validation" (onClick)="removeUploadedFileCallback()">
+                            <mat-icon>
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </mat-icon>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+        <app-file-upload (eventUpload)="handleEventUploadImage($event)"></app-file-upload>
+    </form>
+</mat-dialog-content>
+
+

@@ -15,22 +15,22 @@ export class FileUploadService {
   upload(file: File, userid: string): Observable<any> {
     const formData: FormData = new FormData();
 
-    formData.append('file', file);
+    formData.append('file', file, file.name);
     formData.append('userId', userid);
 
-    const headers = new HttpHeaders();
-    headers.set('Accept', 'multipart/form-data');
-    headers.set('encType', 'multipart/form-data');
-    headers.set('Authorization', 'Bearer ' + this.keycloak.token);
+    const headers: HttpHeaders = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
     let params = new HttpParams();
 
-    const req = new HttpRequest('POST', 'https://ressources-laroute.ddns.net:8080//image/', formData, {
-      headers: headers,
-      reportProgress: true,
-      responseType: 'json'
-    });
+    // URL de votre API backend
+    const uploadUrl = 'https://ressources-laroute.ddns.net:8080/image/'; 
 
-    return this.http.post('https://ressources-laroute.ddns.net:8080/image/',formData,{headers: headers});
+    return this.http.post(uploadUrl,formData, {
+      reportProgress: true, // Pour suivre la progression du téléchargement
+      observe: 'events',
+      headers: headers
+    })
   }
 
   getFiles(): Observable<any> {

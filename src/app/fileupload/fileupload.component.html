@@ -1,0 +1,41 @@
+<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="fileInput">Sélectionner un fichier :</label>
+    <input 
+      type="file"
+      accept="image/*"
+
+      id="fileInput"
+      name="fileInput" 
+      (change)="handleFileInput($event)" 
+      required
+    >
+  </div>
+  
+  <p [ngClass]="{'text-success': fileToUpload, 'text-danger': !fileToUpload}">
+    {{ message }}
+  </p>
+  <p>
+    <mat-form-field class="largeurMax"appearance="outline">
+      <mat-label>Décrivez l'image</mat-label>
+      <input 
+        type="text"
+        formControlName="description"
+        matInput 
+        placeholder="Laissez une description de l'image">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      @if(uploadForm.get('description')?.invalid && uploadForm.get('description')?.touched) {
+        <mat-error >Description requise</mat-error>
+      }
+    </mat-form-field>
+  </p>
+
+  <button 
+    type="submit" 
+    [disabled]="uploadForm.invalid" 
+    class="btn btn-primary"
+  >
+    Envoyer le fichier
+  </button>
+  
+</form>

@@ -1,36 +1,63 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import Keycloak from 'keycloak-js';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable} from "rxjs";
+import {HttpHeaders} from '@angular/common/http';
 import { Image } from '../model/image';
-
+import { DataService } from "./data.service";
+import { environment } from '../../environment/environment';
+import { switchMap } from 'rxjs/operators';
 @Injectable()
-export class ImageService {
+export class ImageService extends DataService{
 
-constructor (private keycloak: Keycloak, private httpClient: HttpClient){}
+  imgUrl = environment.imgUrl;
+
+  constructor () {
+        super();
+        this.url = '/api/image/';
+  }
+
 
 
   public addImage(image: Image): Observable<any> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type':'application/json',
-      'Authorization': 'Bearer ' + this.keycloak.token
-    });
-    return this.httpClient
-        .post('/api/image', 
-          image
-        ,{ headers: headers })
+    return this.create(image);
   }
 
+  public updateImage(image: Image): Observable<any> {
+    return this.update(image);
+  }
+
+  public getImagesByUserId(userId: string): Observable<any> {
+    return this.getByUserId(userId);
+  }
+
+
   public getImageById(id: number): Observable<any> {
+    return this.get(id);
+  }
+
+  public upload(file: any, description: string, userId: string) {
+    // Créer un objet FormData pour encapsuler le fichier et les autres données
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    formData.append('userId', userId);
+    // Ajoutez d'autres champs si nécessaire (ex: formData.append('userId', '123'))
+
+    // URL de votre API backend
+    const uploadUrl = '/ressources/image/';
     const headers: HttpHeaders = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type':'application/json',
-      'Authorization': 'Bearer ' + this.keycloak.token
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    let url: string = '/api/image/' + id;
-    return this.httpClient
-        .get(url
-        ,{ headers: headers })
+    return this.http.post(uploadUrl,formData, {
+      headers: headers
+    }).pipe(
+      switchMap(
+      (event)   =>
+      {
+          let image: Image = new Image();
+          image.chemin = this.imgUrl + '/ressources.laroute.ddns.net/' + userId + '/' + event;
+          image.description = description;
+          image.userId = userId;
+          return this.addImage(image)
+      })
+    )
   }
 }
